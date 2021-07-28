@@ -18,32 +18,47 @@ export default {
    name: 'Slider',
    data() {
       return {
-          images,
-          index: 0
-      }
+         images,
+         index: 0
+      };
    },
    methods: {
       next() {
          if (this.index < images.length - 1) {
-             return this.index++;
+            return this.index++;
          }
-         return this.index = 0;
+         return (this.index = 0);
       },
       previous() {
-         if(this.index > 0){
-             return this.index--;
-         } 
-        return this.index = 2;
+         if (this.index > 0) {
+            return this.index--;
+         }
+         return (this.index = 2);
+      },
+      autoSlide() {
+         setInterval(() => {
+             this.next();
+         }, 3000);
       }
+   },
+   beforeMount() {
+      this.autoSlide();
    }
 };
 </script>
 
 <style scoped>
-    div {
-        overflow-x: hidden;
-    }
-    img {
-        height: 300px;
-    }
+div {
+   overflow-x: hidden;
+}
+img {
+   height: 300px;
+   transition: 300ms;
+}
+
+img:hover {
+    opacity: 0.9;
+    transform: scale(1.2);
+}
+
 </style>
