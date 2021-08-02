@@ -1,8 +1,10 @@
 <template>
-   <div>
-      <input v-if="this.ediTable" v-model="editedText" type="text" />
-      <button @click="toggleEditable">Edit</button>
-      <button @click="editTodo">Finish Editing</button>
+   <div style="display: inline">
+      <div v-if="this.editable">
+         <input v-if="this.editable" v-model="editedText" type="text" />
+         <button @click="editTodo">Finish</button>
+      </div>
+      <button v-if="!this.editable" @click="toggleeditable">Edit</button>
    </div>
 </template>
 
@@ -16,16 +18,16 @@ export default {
    data() {
       return {
          editedText: '',
-         ediTable: false,
+         editable: false,
       };
    },
    methods: {
       editTodo() {
-         this.ediTable = false;
+         this.editable = false;
          this.$emit('editTodo', this.editedText, this.index);
       },
-      toggleEditable() {
-         this.ediTable = !this.ediTable;
+      toggleeditable() {
+         this.editable = !this.editable;
       },
    },
 };

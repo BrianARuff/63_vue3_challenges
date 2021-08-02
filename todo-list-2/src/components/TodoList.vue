@@ -10,11 +10,7 @@
       >
          <li>{{ index + 1 }}. {{ todo.text }}</li>
          <button @click="deleteTodo(index)">Delete</button>
-         <EditTodo
-            @editTodo="handleEditTodo"
-            :todoText="todo.text"
-            :index="index"
-         />
+         <EditTodo @editTodo="handleEditTodo" :index="index" />
       </ul>
    </div>
 </template>
